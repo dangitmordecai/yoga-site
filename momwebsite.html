@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vital Yoga — About Me</title>
+  <meta name="description" content="Modern, minimal yoga about-me website" />
+
+  <!--
+    ✨ Quick customization guide
+    1) Edit brand colors in :root below (primary, sand, sage, ink, accent).
+    2) Replace hero.jpg and portrait.jpg with your own images.
+    3) Update nav links + CTA hrefs to point to your booking/chat.
+    4) Swap the text content in each <section> to your story and offerings.
+    5) Deploy to Netlify / Vercel / GitHub Pages and connect your domain.
+  -->
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      /* Brand palette */
+      --primary: #c04a3a;   /* terracotta accent */
+      --sand:    #f2e7da;   /* warm beige */
+      --sage:    #cfe0d8;   /* muted green */
+      --ink:     #1f2933;   /* deep gray */
+      --ink-2:   #4b5563;   /* medium gray */
+      --white:   #ffffff;
+
+      /* Layout tokens */
+      --radius: 20px;
+      --shadow: 0 10px 30px rgba(0,0,0,.08);
+      --maxw: 1100px;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      color: var(--ink);
+      background: linear-gradient(180deg, var(--sand) 0%, var(--white) 55%);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    /* Header */
+    .site-header { position: sticky; top: 0; z-index: 20; backdrop-filter: saturate(140%) blur(6px); }
+    .nav {
+      margin: 0 auto; max-width: var(--maxw); padding: 14px 20px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 600; letter-spacing: .6px; }
+    .brand-mark {
+      width: 36px; height: 36px; border-radius: 50%; background: var(--primary);
+      position: relative; box-shadow: var(--shadow);
+    }
+    .brand-mark:after {
+      content: ""; position: absolute; inset: 8px; border-radius: 50%; background: radial-gradient(circle at 30% 30%, #fff6, transparent 60%);
+    }
+
+    .nav-links { display: flex; gap: 18px; align-items: center; }
+    .nav-links a { font-weight: 500; color: var(--ink-2); }
+    .nav-links a:hover { color: var(--ink); }
+
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; padding: 12px 18px; border-radius: 999px; font-weight: 600; border: 1px solid transparent; cursor: pointer; transition: transform .08s ease, box-shadow .2s ease, background .2s ease; }
+    .btn:active { transform: translateY(1px); }
+    .btn-primary { background: var(--primary); color: #fff; box-shadow: 0 8px 20px rgba(192, 74, 58, .25); }
+    .btn-primary:hover { box-shadow: 0 10px 30px rgba(192, 74, 58, .35); }
+    .btn-ghost { background: #ffffff90; border-color: #00000010; }
+
+    /* Hero */
+    .hero { max-width: var(--maxw); margin: 40px auto; padding: 0 20px; display: grid; grid-template-columns: 1.2fr 1fr; gap: 28px; align-items: center; }
+    .hero-card {
+      background: linear-gradient(180deg, var(--white), var(--sage));
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden; position: relative;
+    }
+    .hero-img { aspect-ratio: 4/3; object-fit: cover; width: 100%; height: auto; }
+
+    .hero-copy { padding: 38px; position: relative; }
+    .eyebrow { text-transform: uppercase; font-size: .8rem; letter-spacing: .2em; color: var(--ink-2); }
+    h1 { font-family: "Cormorant Garamond", serif; font-weight: 600; font-size: clamp(32px, 5vw, 56px); line-height: 1.05; margin: 10px 0 14px; }
+    .subtitle { max-width: 55ch; color: var(--ink-2); }
+    .cta-row { display: flex; gap: 12px; margin-top: 22px; flex-wrap: wrap; }
+
+    /* About section */
+    .section { max-width: var(--maxw); margin: 70px auto; padding: 0 20px; }
+    .card { background: #fff; border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
+    .split { display: grid; grid-template-columns: 1fr 1fr; }
+    .pad { padding: 34px; }
+    .h2 { font-family: "Cormorant Garamond", serif; font-size: clamp(28px, 3.6vw, 40px); margin: 0 0 8px; }
+
+    /* Grid features */
+    .features { display: grid; gap: 14px; margin-top: 14px; }
+    .feature { display: grid; grid-template-columns: 36px 1fr; gap: 14px; align-items: start; }
+    .dot { width: 12px; height: 12px; background: var(--primary); border-radius: 50%; margin-top: 6px; box-shadow: 0 4px 10px rgba(192, 74, 58, .35); }
+
+    /* Classes/Offerings */
+    .tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .tile { background: #fff; border-radius: 16px; padding: 24px; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 8px; }
+    .tile small { color: var(--ink-2); }
+
+    /* CTA band */
+    .band { border-radius: var(--radius); background: linear-gradient(90deg, var(--sage), var(--sand)); display: grid; grid-template-columns: 2fr 1fr; align-items: center; padding: 28px; box-shadow: var(--shadow); }
+
+    /* Footer */
+    footer { margin-top: 80px; background: #0f1720; color: #e5e7eb; }
+    .foot { max-width: var(--maxw); margin: 0 auto; padding: 28px 20px; display: grid; grid-template-columns: 2fr 1fr; gap: 20px; }
+    .foot a { color: #e5e7eb; opacity: .9; }
+    .credit { opacity: .7; font-size: .9rem; }
+
+    /* Responsive */
+    @media (max-width: 960px) {
+      .hero { grid-template-columns: 1fr; }
+      .split { grid-template-columns: 1fr; }
+      .tiles { grid-template-columns: 1fr; }
+      .band { grid-template-columns: 1fr; gap: 18px; }
+    }
+
+    /* Accessibility + Motion */
+    @media (prefers-reduced-motion: no-preference) {
+      .hero-card { transition: transform .5s cubic-bezier(.2,.8,.2,1); }
+      .hero-card:hover { transform: translateY(-4px); }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header / Nav -->
+  <header class="site-header">
+    <nav class="nav">
+      <a class="brand" href="#">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>Vital Yoga</span>
+      </a>
+      <div class="nav-links" id="navLinks">
+        <a href="#about">About</a>
+        <a href="#classes">Classes</a>
+        <a href="#programs">Programs</a>
+        <a href="#contact">Contact</a>
+        <a class="btn btn-ghost" href="#booking">Book a Class</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-card">
+      <!-- Replace with your own image: 1200x900+ recommended -->
+      <img class="hero-img" src="hero.jpg" alt="Person in a calm seated yoga pose" />
+    </div>
+    <div class="hero-copy">
+      <div class="eyebrow">Online & In‑Person</div>
+      <h1>Mindful Yoga for Real Life</h1>
+      <p class="subtitle">Hi, I’m <strong>Alex</strong> — a certified yoga instructor focused on sustainable movement, breath, and nervous‑system friendly practices you can take off the mat and into everyday life.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#booking">Book a Class</a>
+        <a class="btn" href="#contact">Let’s Chat</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="section">
+    <div class="card split">
+      <div class="pad">
+        <h2 class="h2">About Me</h2>
+        <p>I teach a grounded style that blends vinyasa, gentle strength work, and accessible mobility. Expect clear cues, options for all bodies, and a focus on slowing down so you can feel more and force less.</p>
+        <div class="features">
+          <div class="feature"><span class="dot" aria-hidden="true"></span><div>
+            <strong>Certified RYT‑200</strong><br><small>Trauma‑informed, nervous‑system aware</small>
+          </div></div>
+          <div class="feature"><span class="dot" aria-hidden="true"></span><div>
+            <strong>Beginner‑friendly</strong><br><small>Plenty of modifications and props</small>
+          </div></div>
+          <div class="feature"><span class="dot" aria-hidden="true"></span><div>
+            <strong>Flexible formats</strong><br><small>1:1, small groups, corporate sessions</small>
+          </div></div>
+        </div>
+      </div>
+      <div class="pad" style="background:linear-gradient(160deg, var(--sage), var(--sand));">
+        <!-- Replace with a portrait -->
+        <img src="portrait.jpg" alt="Portrait of the instructor" style="border-radius:12px; box-shadow: var(--shadow);" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Classes / Offerings -->
+  <section id="classes" class="section">
+    <h2 class="h2" style="margin-bottom:14px;">Classes</h2>
+    <div class="tiles">
+      <article class="tile">
+        <h3>Gentle Flow</h3>
+        <small>Slow, supportive sequencing</small>
+        <p>Ease into movement with breath‑led flow, mobility work, and longer exhales. Perfect for stress relief and beginners.</p>
+      </article>
+      <article class="tile">
+        <h3>Strength & Stillness</h3>
+        <small>Build capacity, then soften</small>
+        <p>A balanced class with simple strength progressions followed by rest, breath, and down‑regulation.</p>
+      </article>
+      <article class="tile">
+        <h3>1:1 Private</h3>
+        <small>Personalized support</small>
+        <p>Tailored sessions based on your goals, injuries, and schedule. Available in‑person or on Zoom.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- Programs / Packages -->
+  <section id="programs" class="section">
+    <div class="band">
+      <div>
+        <h2 class="h2" style="margin:0 0 6px;">6‑Week Nervous System Reset</h2>
+        <p style="margin:0; color:var(--ink-2)">A supportive program combining weekly practice, micro‑habits, and check‑ins to build consistency without burnout.</p>
+      </div>
+      <div style="justify-self:end; align-self:center;">
+        <a class="btn btn-primary" href="#booking">Join the Waitlist</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact / Footer CTA -->
+  <section id="contact" class="section">
+    <div class="card pad">
+      <h2 class="h2">Say Hello</h2>
+      <p>Questions about classes or private sessions? Send a message and I’ll get back within 24 hours.</p>
+      <form id="contactForm" class="features" style="grid-template-columns: 1fr 1fr; gap: 14px;">
+        <input required name="name" placeholder="Your name" style="padding:12px 14px; border:1px solid #e5e7eb; border-radius:10px;" />
+        <input required name="email" type="email" placeholder="Email" style="padding:12px 14px; border:1px solid #e5e7eb; border-radius:10px;" />
+        <textarea required name="message" placeholder="Your message" rows="4" style="grid-column:1/-1; padding:12px 14px; border:1px solid #e5e7eb; border-radius:12px;"></textarea>
+        <button class="btn btn-primary" type="submit" style="grid-column:1/-1; width:max-content;">Send Message</button>
+        <p id="formNote" style="grid-column:1/-1; margin:0; font-size:.95rem; color:var(--ink-2);"></p>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <div class="foot">
+      <div>
+        <div class="brand" style="margin-bottom:8px;">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span>Vital Yoga</span>
+        </div>
+        <div class="credit">© <span id="year"></span> Vital Yoga • All rights reserved</div>
+      </div>
+      <div style="justify-self:end; display:flex; gap:10px; align-items:center;">
+        <a class="btn btn-ghost" href="#booking">Book a Class</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Minimal JS: year + fake form handler (replace with your service)
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Contact form: demo handler. Swap with Formspree, Basin, or your backend.
+    const form = document.getElementById('contactForm');
+    const note = document.getElementById('formNote');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(form));
+      // 👉 Replace the next block with a fetch() to your form endpoint
+      await new Promise(r => setTimeout(r, 700));
+      note.textContent = `Thanks, ${data.name}! Your message is on its way.`;
+      form.reset();
+    });
+  </script>
+</body>
+</html>
