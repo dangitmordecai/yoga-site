@@ -3,187 +3,125 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Hub City Yoga To-Go</title>
-  <meta name="description" content="Mobile yoga in Spartanburg—classes, private sessions, and wellness events brought to you. Hub City Yoga To-Go." />
+  <title>Hub City Yoga To-Go — Mobile Yoga in Spartanburg</title>
+  <meta name="description" content="Mobile, mindful yoga in Spartanburg—private sessions, small groups, and community classes. Hub City Yoga To-Go." />
 
-  <!-- ===== Color System: Forest in Spring =====
-       #556945  deep forest (primary/dark)
-       #BDCAC5  misty sage (light)
-       #F2E4DE  soft blush (surface)
-       #C6C3BD  warm stone (muted)
-       #84807C  moss gray (accent/dark)
-  -->
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Cormorant+Garamond:wght@600&display=swap" rel="stylesheet"/>
+
   <style>
     :root{
-      --forest:#556945;
-      --sage:#BDCAC5;
-      --blush:#F2E4DE;
-      --stone:#C6C3BD;
-      --moss:#84807C;
+      /* Fresh, high-contrast palette */
+      --ink:#0f172a;          /* deep ink (text) */
+      --muted:#475569;        /* secondary text */
+      --accent:#e63946;       /* coral accent */
+      --mint:#b8f2e6;         /* mint */
+      --peach:#ffe8cc;        /* peach */
+      --card:#ffffff;         /* surface */
+      --ring: rgba(230,57,70,.25);
 
-      /* Text colors derived for contrast */
-      --text-dark:#2a2d28;            /* readable on light tones */
-      --text-light:#ffffff;           /* readable on dark tones */
-      --text-muted:#5b5f59;
-
-      /* UI tokens */
-      --bg-gradient: linear-gradient(
-        180deg,
-        var(--forest) 0%,
-        var(--sage) 24%,
-        var(--blush) 50%,
-        var(--stone) 76%,
-        var(--moss) 100%
-      );
-      --card-bg: rgba(255,255,255,0.8);
-      --card-border: rgba(85,105,69,0.25); /* forest w/ alpha */
-      --ring: rgba(85,105,69,0.28);
-      --shadow: 0 10px 30px rgba(0,0,0,0.08);
       --radius: 16px;
-      --space: clamp(1rem, 2vw, 1.5rem);
+      --shadow: 0 10px 30px rgba(15,23,42,.08);
       --maxw: 1100px;
+      --space: clamp(16px, 2vw, 24px);
     }
 
-    /* Reset-ish */
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
       margin:0;
-      color:var(--text-dark);
-      font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji";
-      background: var(--bg-gradient) fixed;
-      background-size: 100% 100%;
+      font:16px/1.6 Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--ink);
+
+      /* One continuous background (no cutoff) */
+      min-height:100vh;
+      background:
+        linear-gradient(180deg, var(--peach) 0%, var(--mint) 100%) fixed;
+      background-attachment: fixed;
     }
 
-    /* Layout */
+    a{color:inherit; text-decoration:none}
+
     .wrap{max-width:var(--maxw); margin:0 auto; padding:0 var(--space)}
     header{
       position:sticky; top:0; z-index:20;
-      backdrop-filter: blur(6px);
-      background: linear-gradient(180deg, rgba(242,228,222,0.85), rgba(242,228,222,0.55));
-      border-bottom:1px solid var(--card-border);
+      backdrop-filter: blur(8px) saturate(140%);
+      background: rgba(255,255,255,.7);
+      border-bottom:1px solid rgba(15,23,42,.06);
     }
-    .bar{display:flex; align-items:center; justify-content:space-between; padding:0.75rem 0}
-    .brand{display:flex; align-items:center; gap:.75rem; text-decoration:none}
-    .logo{
-      width:40px; height:40px; border-radius:50%;
-      background: radial-gradient(circle at 30% 30%, var(--sage), var(--forest));
-      box-shadow: inset 0 0 0 2px rgba(255,255,255,0.65), 0 2px 10px rgba(0,0,0,0.08);
+    .bar{display:flex; align-items:center; justify-content:space-between; padding:.8rem 0}
+    .brand{display:flex; gap:.6rem; align-items:center}
+    .logo{width:36px; height:36px; border-radius:50%;
+      background: radial-gradient(circle at 30% 30%, #fff8, #fff0 60%), var(--accent);
+      box-shadow: 0 6px 14px rgba(230,57,70,.35);
     }
-    .brand span{font-weight:700; letter-spacing:.4px; color:#31402c}
-
-    nav a{
-      color:#31402c; text-decoration:none; margin-left:1rem; font-weight:600;
-      padding:.4rem .7rem; border-radius:999px; transition:200ms;
-    }
-    nav a:hover{background: rgba(85,105,69,0.12)}
-
-    /* Hero */
-    .hero{
-      padding: clamp(3rem, 6vw, 6rem) 0;
-      color: var(--text-dark);
-    }
-    .hero .card{
-      background: var(--card-bg);
-      border:1px solid var(--card-border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: clamp(1.25rem, 2.4vw, 2rem);
-      display:grid; gap:1rem;
-    }
-    h1{
-      margin:.2rem 0 .5rem;
-      font-size: clamp(1.8rem, 3.6vw, 3rem);
-      line-height:1.2;
-      color:#31402c;
-    }
-    .kicker{color:var(--text-muted); font-weight:600; letter-spacing:.08em; text-transform:uppercase}
-    .lead{font-size: clamp(1rem, 1.4vw, 1.15rem)}
-
-    /* Buttons */
-    .btn{
-      display:inline-flex; align-items:center; justify-content:center; gap:.5rem;
-      padding:.75rem 1.1rem; border-radius:12px; font-weight:700; text-decoration:none;
-      border:1px solid transparent; transition:200ms; cursor:pointer; user-select:none;
-    }
-    .btn.primary{
-      background: linear-gradient(180deg, var(--forest), #46573a);
-      color:var(--text-light); border-color:#3e4e36;
-      box-shadow: 0 6px 18px rgba(85,105,69,0.35);
-    }
-    .btn.primary:hover{filter:brightness(1.05)}
-    .btn.ghost{
-      background: rgba(189,202,197,0.35); color:#2b312e; border-color: rgba(49,64,44,0.2);
-    }
-    .btn.ghost:hover{background: rgba(189,202,197,0.5)}
+    nav a{font-weight:600; margin-left:.9rem; padding:.35rem .7rem; border-radius:999px}
+    nav a:hover{background:#ffffffb3}
 
     /* Sections */
-    section{padding: clamp(2.5rem,5vw,4rem) 0}
-    .section-title{
-      margin:0 0 1rem; font-size: clamp(1.3rem,2.2vw,1.8rem); color:#2f3b33;
-    }
-
-    .grid{display:grid; gap:1rem}
-    @media(min-width:820px){ .grid.cols-3{grid-template-columns:repeat(3,1fr)} }
-
+    section{padding: clamp(36px, 6vw, 72px) 0}
     .card{
-      background: var(--card-bg);
-      border:1px solid var(--card-border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding:1rem;
+      background:var(--card);
+      border:1px solid rgba(15,23,42,.06);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding: clamp(18px, 2vw, 28px);
     }
-    .badge{
-      font-size:.75rem; font-weight:800; text-transform:uppercase; letter-spacing:.08em;
-      padding:.25rem .55rem; border-radius:999px; display:inline-block;
-      background: var(--blush); color:#59443f; border:1px solid rgba(89,68,63,.25)
-    }
-    .list{padding-left:1.1em}
-    .list li{margin:.5rem 0}
 
-    /* Quote band */
-    .band{
-      background: linear-gradient(180deg, rgba(85,105,69,0.15), rgba(132,128,124,0.15));
-      border:1px solid var(--card-border);
-      border-radius: var(--radius);
-      padding: clamp(1rem, 2vw, 1.5rem);
+    /* Hero */
+    .hero h1{
+      font-family:"Cormorant Garamond", serif;
+      font-weight:600;
+      font-size: clamp(32px, 5.2vw, 56px);
+      line-height:1.05;
+      margin:.25rem 0 .6rem;
     }
+    .kicker{letter-spacing:.12em; text-transform:uppercase; font-weight:700; font-size:.8rem; color:var(--muted)}
+    .lead{max-width:60ch; color:var(--muted)}
+    .row{display:flex; gap:.75rem; flex-wrap:wrap; margin-top:1rem}
+
+    .btn{display:inline-flex; align-items:center; justify-content:center; gap:.5rem;
+      padding:.75rem 1.1rem; border-radius:12px; font-weight:700; border:1px solid transparent; cursor:pointer}
+    .btn.primary{background:var(--accent); color:#fff; box-shadow:0 10px 24px rgba(230,57,70,.35)}
+    .btn.primary:hover{filter:brightness(1.05)}
+    .btn.ghost{background:#fff; border-color:rgba(15,23,42,.08)}
+
+    /* Simple grids */
+    .grid{display:grid; gap:16px}
+    @media(min-width:840px){ .grid.cols-3{grid-template-columns:repeat(3,1fr)} }
+
+    .badge{
+      display:inline-block; font-size:.75rem; font-weight:800; text-transform:uppercase; letter-spacing:.08em;
+      padding:.25rem .6rem; border-radius:999px; color:#7a2d2f; background:#ffe0d9; border:1px solid #f2c2bb;
+    }
+    .section-title{margin:0 0 .8rem; font-size: clamp(22px, 3vw, 30px)}
+    .list{padding-left:1.1em} .list li{margin:.45rem 0}
+
+    /* Band note */
+    .band{background:linear-gradient(90deg, #fff, #fff8);
+      border:1px solid rgba(15,23,42,.06); border-radius:var(--radius); padding:16px}
+
+    /* Form */
+    .input{
+      width:100%; padding:.7rem .9rem; border-radius:12px; border:1px solid rgba(15,23,42,.12); background:#fff;
+      outline:none; transition: box-shadow .15s ease, border-color .15s ease;
+      box-shadow: inset 0 0 0 1px transparent, 0 0 0 0 var(--ring);
+    }
+    .input:focus{box-shadow: inset 0 0 0 1px var(--accent), 0 0 0 6px var(--ring); border-color:var(--accent)}
 
     /* Footer */
-    footer{
-      color:var(--text-light);
-      background: linear-gradient(180deg, var(--moss) 0%, #6f6b66 100%);
-      border-top:1px solid rgba(255,255,255,0.12);
-    }
-    .foot{
-      display:grid; gap:1rem; grid-template-columns: 1fr;
-      padding: 1.5rem 0;
-    }
-    .foot a{color:#f6f4f3; text-decoration:none}
-    .foot a:hover{text-decoration:underline}
-    .copyright{
-      text-align:center; padding:.9rem 0; font-size:.9rem;
-      color:#ece9e8; opacity:.9; border-top:1px solid rgba(255,255,255,0.12)
-    }
-
-    /* Forms */
-    .input{
-      width:100%; padding:.7rem .9rem; border-radius:10px; border:1px solid var(--card-border);
-      background: rgba(242,228,222,0.85); color:#2b2e2a; outline: none;
-      box-shadow: inset 0 0 0 1px transparent, 0 0 0 0 var(--ring);
-      transition: box-shadow .15s ease, border-color .15s ease, background .15s ease;
-    }
-    .input::placeholder{color:#6c7069}
-    .input:focus{box-shadow: inset 0 0 0 1px #3f4f38, 0 0 0 6px var(--ring); border-color:#3f4f38; background: rgba(242,228,222,0.96)}
+    footer{color:#fff; background: linear-gradient(180deg, #0f172a 0%, #111827 100%); border-top:1px solid rgba(255,255,255,.08)}
+    .foot{display:grid; gap:10px; grid-template-columns:1fr; padding:20px 0}
+    .foot a{color:#e5e7eb}
+    .copyright{border-top:1px solid rgba(255,255,255,.12); text-align:center; padding:12px 0; font-size:.92rem; opacity:.9}
   </style>
 </head>
 <body>
-
   <header>
     <div class="wrap bar">
       <a class="brand" href="#">
         <div class="logo" aria-hidden="true"></div>
-        <span>Hub City Yoga To-Go</span>
+        <strong>Hub City Yoga To-Go</strong>
       </a>
       <nav aria-label="Primary">
         <a href="#about">About</a>
@@ -198,10 +136,10 @@
     <section class="hero">
       <div class="wrap">
         <div class="card">
-          <div class="kicker">Mobile · Mindful · Local</div>
+          <div class="kicker">Mobile • Mindful • Local</div>
           <h1>Yoga that meets you where you are.</h1>
           <p class="lead">We bring nurturing, accessible yoga to homes, parks, and workplaces across Spartanburg. Private sessions, small groups, and community pop-ups—grounded, gentle, and restorative.</p>
-          <div style="display:flex; gap:.75rem; flex-wrap:wrap">
+          <div class="row">
             <a class="btn primary" href="#contact">Book a session</a>
             <a class="btn ghost" href="#classes">View offerings</a>
           </div>
@@ -214,18 +152,18 @@
       <div class="wrap">
         <h2 class="section-title">About Hub City Yoga To-Go</h2>
         <div class="grid cols-3">
-          <div class="card">
+          <article class="card">
             <span class="badge">Philosophy</span>
-            <p>Slow, breath-led practices inspired by nature’s cycles—think forest greens and warm earth tones, now reflected in our new palette.</p>
-          </div>
-          <div class="card">
+            <p>Slow, breath-led practices with options for all bodies. Calm pacing, clear cues, and a focus on feeling more—forcing less.</p>
+          </article>
+          <article class="card">
             <span class="badge">Who it’s for</span>
-            <p>Beginners, busy professionals, and anyone seeking grounding movement and mindful rest. Mat-friendly options for all bodies.</p>
-          </div>
-          <div class="card">
+            <p>Beginners, busy professionals, and anyone seeking grounding movement and mindful rest. Mat-friendly options for everybody.</p>
+          </article>
+          <article class="card">
             <span class="badge">Where we meet</span>
             <p>Homes, offices, parks, and community spaces around Spartanburg. We bring the props—you bring yourself.</p>
-          </div>
+          </article>
         </div>
       </div>
     </section>
@@ -255,13 +193,14 @@
             <h3>Restorative / Chair</h3>
             <ul class="list">
               <li>Deep rest with props or chair support</li>
-              <li>Nervous system-friendly pacing</li>
+              <li>Nervous-system-friendly pacing</li>
               <li>Ideal for recovery and relaxation</li>
             </ul>
           </div>
         </div>
-        <div class="band" style="margin-top:1rem">
-          <strong>Note:</strong> Sliding-scale pricing available. Community classes announced monthly.
+
+        <div class="band" style="margin-top:16px">
+          <strong>Sliding-scale:</strong> Available for private sessions. Community classes announced monthly.
         </div>
       </div>
     </section>
@@ -273,17 +212,17 @@
         <div class="grid">
           <div class="card">
             <form onsubmit="event.preventDefault(); alert('Thanks! We will be in touch shortly.');">
-              <div class="grid" style="grid-template-columns:1fr 1fr; gap:.75rem">
+              <div class="grid" style="grid-template-columns:1fr 1fr; gap:12px">
                 <input class="input" type="text" name="name" placeholder="Your name" required>
                 <input class="input" type="email" name="email" placeholder="Email address" required>
               </div>
-              <div style="margin-top:.75rem">
+              <div style="margin-top:12px">
                 <input class="input" type="text" name="subject" placeholder="Subject">
               </div>
-              <div style="margin-top:.75rem">
-                <textarea class="input" name="message" placeholder="Tell us what you’re looking for…" rows="5"></textarea>
+              <div style="margin-top:12px">
+                <textarea class="input" name="message" rows="5" placeholder="Tell us what you’re looking for…"></textarea>
               </div>
-              <div style="margin-top:.9rem">
+              <div style="margin-top:14px" class="row">
                 <button class="btn primary" type="submit">Send message</button>
                 <a class="btn ghost" href="tel:+1-864-000-0000">Call us</a>
               </div>
@@ -296,20 +235,15 @@
 
   <footer role="contentinfo">
     <div class="wrap foot">
-      <div>
-        <strong>Hub City Yoga To-Go</strong><br>
-        Spartanburg, SC • Mobile yoga
-      </div>
-      <div>
-        <a href="#about">About</a> · <a href="#classes">Classes</a> · <a href="#contact">Contact</a>
-      </div>
-      <div>
-        <a href="mailto:hello@hubcityyogatogo.com">hello@hubcityyogatogo.com</a>
-      </div>
+      <div><strong>Hub City Yoga To-Go</strong><br/>Spartanburg, SC • Mobile yoga</div>
+      <div><a href="#about">About</a> · <a href="#classes">Classes</a> · <a href="#contact">Contact</a></div>
+      <div><a href="mailto:hello@hubcityyogatogo.com">hello@hubcityyogatogo.com</a></div>
     </div>
     <div class="copyright">© <span id="y"></span> Hub City Yoga To-Go</div>
   </footer>
 
-  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
