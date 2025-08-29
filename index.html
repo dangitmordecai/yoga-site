@@ -1,244 +1,315 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Hub City Yoga To-Go — About Me</title>
-  <meta name="description" content="Modern, vibrant yoga about-me website" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Hub City Yoga To-Go</title>
+  <meta name="description" content="Mobile yoga in Spartanburg—classes, private sessions, and wellness events brought to you. Hub City Yoga To-Go." />
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
-
+  <!-- ===== Color System: Forest in Spring =====
+       #556945  deep forest (primary/dark)
+       #BDCAC5  misty sage (light)
+       #F2E4DE  soft blush (surface)
+       #C6C3BD  warm stone (muted)
+       #84807C  moss gray (accent/dark)
+  -->
   <style>
-    :root {
-      /* Brighter palette */
-      --primary: #e63946;   /* coral red accent */
-      --sand:    #ffe8cc;   /* light peach */
-      --sage:    #b8f2e6;   /* aqua mint */
-      --ink:     #102a43;   /* deep navy */
-      --ink-2:   #2a6f97;   /* sky blue */
-      --white:   #ffffff;
+    :root{
+      --forest:#556945;
+      --sage:#BDCAC5;
+      --blush:#F2E4DE;
+      --stone:#C6C3BD;
+      --moss:#84807C;
 
-      --radius: 20px;
-      --shadow: 0 10px 30px rgba(0,0,0,.1);
+      /* Text colors derived for contrast */
+      --text-dark:#2a2d28;            /* readable on light tones */
+      --text-light:#ffffff;           /* readable on dark tones */
+      --text-muted:#5b5f59;
+
+      /* UI tokens */
+      --bg-gradient: linear-gradient(
+        180deg,
+        var(--forest) 0%,
+        var(--sage) 24%,
+        var(--blush) 50%,
+        var(--stone) 76%,
+        var(--moss) 100%
+      );
+      --card-bg: rgba(255,255,255,0.8);
+      --card-border: rgba(85,105,69,0.25); /* forest w/ alpha */
+      --ring: rgba(85,105,69,0.28);
+      --shadow: 0 10px 30px rgba(0,0,0,0.08);
+      --radius: 16px;
+      --space: clamp(1rem, 2vw, 1.5rem);
       --maxw: 1100px;
     }
 
-    * { box-sizing: border-box; }
-    html, body { height: 100%; margin:0; padding:0; }
-    body {
-      font-family: Inter, system-ui, sans-serif;
-      color: var(--ink);
-      /* One long gradient from very top to very bottom */
-      min-height: 100vh;
-      background: linear-gradient(180deg, var(--sand) 0%, var(--sage) 100%) fixed;
-      line-height: 1.6;
+    /* Reset-ish */
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      color:var(--text-dark);
+      font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji";
+      background: var(--bg-gradient) fixed;
+      background-size: 100% 100%;
     }
 
-    a { color: inherit; text-decoration: none; }
-    img { max-width: 100%; display: block; }
+    /* Layout */
+    .wrap{max-width:var(--maxw); margin:0 auto; padding:0 var(--space)}
+    header{
+      position:sticky; top:0; z-index:20;
+      backdrop-filter: blur(6px);
+      background: linear-gradient(180deg, rgba(242,228,222,0.85), rgba(242,228,222,0.55));
+      border-bottom:1px solid var(--card-border);
+    }
+    .bar{display:flex; align-items:center; justify-content:space-between; padding:0.75rem 0}
+    .brand{display:flex; align-items:center; gap:.75rem; text-decoration:none}
+    .logo{
+      width:40px; height:40px; border-radius:50%;
+      background: radial-gradient(circle at 30% 30%, var(--sage), var(--forest));
+      box-shadow: inset 0 0 0 2px rgba(255,255,255,0.65), 0 2px 10px rgba(0,0,0,0.08);
+    }
+    .brand span{font-weight:700; letter-spacing:.4px; color:#31402c}
 
-    /* Header */
-    .site-header { position: sticky; top: 0; z-index: 20; backdrop-filter: saturate(140%) blur(6px); background: rgba(255,255,255,0.65); border-bottom: 1px solid rgba(0,0,0,.05); }
-    .nav { margin: 0 auto; max-width: var(--maxw); padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; }
-    .brand { display: flex; align-items: center; gap: 10px; font-weight: 600; letter-spacing: .6px; }
-    .brand-mark { width: 36px; height: 36px; border-radius: 50%; background: var(--primary); position: relative; box-shadow: var(--shadow); }
-    .brand-mark:after { content: ""; position: absolute; inset: 8px; border-radius: 50%; background: radial-gradient(circle at 30% 30%, #fff6, transparent 60%); }
-
-    .nav-links { display: flex; gap: 18px; align-items: center; }
-    .nav-links a { font-weight: 500; color: var(--ink-2); }
-    .nav-links a:hover { color: var(--ink); }
-
-    .btn { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; padding: 12px 18px; border-radius: 999px; font-weight: 600; border: 1px solid transparent; cursor: pointer; transition: transform .08s ease, box-shadow .2s ease, background .2s ease; }
-    .btn:active { transform: translateY(1px); }
-    .btn-primary { background: var(--primary); color: #fff; box-shadow: 0 8px 20px rgba(230,57,70,.35); }
-    .btn-primary:hover { box-shadow: 0 10px 30px rgba(230,57,70,.5); }
-    .btn-ghost { background: #ffffffcc; border-color: #00000010; }
+    nav a{
+      color:#31402c; text-decoration:none; margin-left:1rem; font-weight:600;
+      padding:.4rem .7rem; border-radius:999px; transition:200ms;
+    }
+    nav a:hover{background: rgba(85,105,69,0.12)}
 
     /* Hero */
-    .hero { max-width: var(--maxw); margin: 40px auto; padding: 0 20px; display: grid; grid-template-columns: 1.2fr 1fr; gap: 28px; align-items: center; }
-    .hero-card { border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; background: #fff; }
-    .hero-img { aspect-ratio: 4/3; object-fit: cover; width: 100%; height: auto; }
+    .hero{
+      padding: clamp(3rem, 6vw, 6rem) 0;
+      color: var(--text-dark);
+    }
+    .hero .card{
+      background: var(--card-bg);
+      border:1px solid var(--card-border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: clamp(1.25rem, 2.4vw, 2rem);
+      display:grid; gap:1rem;
+    }
+    h1{
+      margin:.2rem 0 .5rem;
+      font-size: clamp(1.8rem, 3.6vw, 3rem);
+      line-height:1.2;
+      color:#31402c;
+    }
+    .kicker{color:var(--text-muted); font-weight:600; letter-spacing:.08em; text-transform:uppercase}
+    .lead{font-size: clamp(1rem, 1.4vw, 1.15rem)}
 
-    .hero-copy { padding: 38px; }
-    .eyebrow { text-transform: uppercase; font-size: .8rem; letter-spacing: .2em; color: var(--ink-2); }
-    h1 { font-family: "Cormorant Garamond", serif; font-weight: 600; font-size: clamp(32px, 5vw, 56px); line-height: 1.05; margin: 10px 0 14px; }
-    .subtitle { max-width: 55ch; color: var(--ink-2); }
-    .cta-row { display: flex; gap: 12px; margin-top: 22px; flex-wrap: wrap; }
+    /* Buttons */
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:.5rem;
+      padding:.75rem 1.1rem; border-radius:12px; font-weight:700; text-decoration:none;
+      border:1px solid transparent; transition:200ms; cursor:pointer; user-select:none;
+    }
+    .btn.primary{
+      background: linear-gradient(180deg, var(--forest), #46573a);
+      color:var(--text-light); border-color:#3e4e36;
+      box-shadow: 0 6px 18px rgba(85,105,69,0.35);
+    }
+    .btn.primary:hover{filter:brightness(1.05)}
+    .btn.ghost{
+      background: rgba(189,202,197,0.35); color:#2b312e; border-color: rgba(49,64,44,0.2);
+    }
+    .btn.ghost:hover{background: rgba(189,202,197,0.5)}
 
     /* Sections */
-    .section { max-width: var(--maxw); margin: 70px auto; padding: 0 20px; }
-    .card { background: #fff; border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
-    .split { display: grid; grid-template-columns: 1fr 1fr; }
-    .pad { padding: 34px; }
-    .h2 { font-family: "Cormorant Garamond", serif; font-size: clamp(28px, 3.6vw, 40px); margin: 0 0 8px; }
+    section{padding: clamp(2.5rem,5vw,4rem) 0}
+    .section-title{
+      margin:0 0 1rem; font-size: clamp(1.3rem,2.2vw,1.8rem); color:#2f3b33;
+    }
 
-    /* Features */
-    .features { display: grid; gap: 14px; margin-top: 14px; }
-    .feature { display: grid; grid-template-columns: 36px 1fr; gap: 14px; align-items: start; }
-    .dot { width: 12px; height: 12px; background: var(--primary); border-radius: 50%; margin-top: 6px; box-shadow: 0 4px 10px rgba(230,57,70,.45); }
+    .grid{display:grid; gap:1rem}
+    @media(min-width:820px){ .grid.cols-3{grid-template-columns:repeat(3,1fr)} }
 
-    /* Tiles */
-    .tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-    .tile { background: #fff; border-radius: 16px; padding: 24px; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 8px; }
-    .tile small { color: var(--ink-2); }
+    .card{
+      background: var(--card-bg);
+      border:1px solid var(--card-border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding:1rem;
+    }
+    .badge{
+      font-size:.75rem; font-weight:800; text-transform:uppercase; letter-spacing:.08em;
+      padding:.25rem .55rem; border-radius:999px; display:inline-block;
+      background: var(--blush); color:#59443f; border:1px solid rgba(89,68,63,.25)
+    }
+    .list{padding-left:1.1em}
+    .list li{margin:.5rem 0}
 
-    /* Band */
-    .band { border-radius: var(--radius); background: linear-gradient(90deg, var(--sage), var(--sand)); display: grid; grid-template-columns: 2fr 1fr; align-items: center; padding: 28px; box-shadow: var(--shadow); }
+    /* Quote band */
+    .band{
+      background: linear-gradient(180deg, rgba(85,105,69,0.15), rgba(132,128,124,0.15));
+      border:1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: clamp(1rem, 2vw, 1.5rem);
+    }
 
     /* Footer */
-    footer { margin-top: 80px; background: var(--ink); color: #f1faee; }
-    .foot { max-width: var(--maxw); margin: 0 auto; padding: 28px 20px; display: grid; grid-template-columns: 2fr 1fr; gap: 20px; }
-    .foot a { color: #f1faee; opacity: .9; }
-    .credit { opacity: .8; font-size: .9rem; }
-
-    /* Responsive */
-    @media (max-width: 960px) {
-      .hero { grid-template-columns: 1fr; }
-      .split { grid-template-columns: 1fr; }
-      .tiles { grid-template-columns: 1fr; }
-      .band { grid-template-columns: 1fr; gap: 18px; }
+    footer{
+      color:var(--text-light);
+      background: linear-gradient(180deg, var(--moss) 0%, #6f6b66 100%);
+      border-top:1px solid rgba(255,255,255,0.12);
     }
+    .foot{
+      display:grid; gap:1rem; grid-template-columns: 1fr;
+      padding: 1.5rem 0;
+    }
+    .foot a{color:#f6f4f3; text-decoration:none}
+    .foot a:hover{text-decoration:underline}
+    .copyright{
+      text-align:center; padding:.9rem 0; font-size:.9rem;
+      color:#ece9e8; opacity:.9; border-top:1px solid rgba(255,255,255,0.12)
+    }
+
+    /* Forms */
+    .input{
+      width:100%; padding:.7rem .9rem; border-radius:10px; border:1px solid var(--card-border);
+      background: rgba(242,228,222,0.85); color:#2b2e2a; outline: none;
+      box-shadow: inset 0 0 0 1px transparent, 0 0 0 0 var(--ring);
+      transition: box-shadow .15s ease, border-color .15s ease, background .15s ease;
+    }
+    .input::placeholder{color:#6c7069}
+    .input:focus{box-shadow: inset 0 0 0 1px #3f4f38, 0 0 0 6px var(--ring); border-color:#3f4f38; background: rgba(242,228,222,0.96)}
   </style>
 </head>
 <body>
-  <!-- Header / Nav -->
-  <header class="site-header">
-    <nav class="nav">
+
+  <header>
+    <div class="wrap bar">
       <a class="brand" href="#">
-        <span class="brand-mark" aria-hidden="true"></span>
-        <span>Hub Citty Yoga To-Go</span>
+        <div class="logo" aria-hidden="true"></div>
+        <span>Hub City Yoga To-Go</span>
       </a>
-      <div class="nav-links" id="navLinks">
+      <nav aria-label="Primary">
         <a href="#about">About</a>
         <a href="#classes">Classes</a>
-        <a href="#programs">Programs</a>
         <a href="#contact">Contact</a>
-        <a class="btn btn-ghost" href="#booking">Book a Class</a>
-      </div>
-    </nav>
+      </nav>
+    </div>
   </header>
 
-  <!-- Hero -->
-  <section class="hero">
-    <div class="hero-card">
-      <img class="hero-img" src="hero.jpg" alt="Person in a calm seated yoga pose" />
-    </div>
-    <div class="hero-copy">
-      <div class="eyebrow">Online & In‑Person</div>
-      <h1>Mindful Yoga for Real Life</h1>
-      <p class="subtitle">Hi, I’m <strong>Suzanne</strong> — a certified yoga instructor focused on sustainable movement, breath, and nervous‑system friendly practices you can take off the mat and into everyday life.</p>
-      <div class="cta-row">
-        <a class="btn btn-primary" href="#booking">Book a Class</a>
-        <a class="btn" href="#contact">Let’s Chat</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- About -->
-  <section id="about" class="section">
-    <div class="card split">
-      <div class="pad">
-        <h2 class="h2">About Me</h2>
-        <p>I teach a grounded style that blends vinyasa, gentle strength work, and accessible mobility. Expect clear cues, options for all bodies, and a focus on slowing down so you can feel more and force less.</p>
-        <div class="features">
-          <div class="feature"><span class="dot" aria-hidden="true"></span><div>
-            <strong>Certified RYT‑200</strong><br><small>Trauma‑informed, nervous‑system aware</small>
-          </div></div>
-          <div class="feature"><span class="dot" aria-hidden="true"></span><div>
-            <strong>Beginner‑friendly</strong><br><small>Plenty of modifications and props</small>
-          </div></div>
-          <div class="feature"><span class="dot" aria-hidden="true"></span><div>
-            <strong>Flexible formats</strong><br><small>1:1, small groups, corporate sessions</small>
-          </div></div>
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="wrap">
+        <div class="card">
+          <div class="kicker">Mobile · Mindful · Local</div>
+          <h1>Yoga that meets you where you are.</h1>
+          <p class="lead">We bring nurturing, accessible yoga to homes, parks, and workplaces across Spartanburg. Private sessions, small groups, and community pop-ups—grounded, gentle, and restorative.</p>
+          <div style="display:flex; gap:.75rem; flex-wrap:wrap">
+            <a class="btn primary" href="#contact">Book a session</a>
+            <a class="btn ghost" href="#classes">View offerings</a>
+          </div>
         </div>
       </div>
-      <div class="pad" style="background:linear-gradient(160deg, var(--sage), var(--sand));">
-        <img src="portrait.jpg" alt="Portrait of the instructor" style="border-radius:12px; box-shadow: var(--shadow);" />
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Classes / Offerings -->
-  <section id="classes" class="section">
-    <h2 class="h2" style="margin-bottom:14px;">Classes</h2>
-    <div class="tiles">
-      <article class="tile">
-        <h3>Gentle Flow</h3>
-        <small>Slow, supportive sequencing</small>
-        <p>Ease into movement with breath‑led flow, mobility work, and longer exhales. Perfect for stress relief and beginners.</p>
-      </article>
-      <article class="tile">
-        <h3>Strength & Stillness</h3>
-        <small>Build capacity, then soften</small>
-        <p>A balanced class with simple strength progressions followed by rest, breath, and down‑regulation.</p>
-      </article>
-      <article class="tile">
-        <h3>1:1 Private</h3>
-        <small>Personalized support</small>
-        <p>Tailored sessions based on your goals, injuries, and schedule. Available in‑person or on Zoom.</p>
-      </article>
-    </div>
-  </section>
-
-  <!-- Programs / Packages -->
-  <section id="programs" class="section">
-    <div class="band">
-      <div>
-        <h2 class="h2" style="margin:0 0 6px;">6‑Week Nervous System Reset</h2>
-        <p style="margin:0; color:var(--ink-2)">A supportive program combining weekly practice, micro‑habits, and check‑ins to build consistency without burnout.</p>
-      </div>
-      <div style="justify-self:end; align-self:center;">
-        <a class="btn btn-primary" href="#booking">Join the Waitlist</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact / Footer CTA -->
-  <section id="contact" class="section">
-    <div class="card pad">
-      <h2 class="h2">Say Hello</h2>
-      <p>Questions about classes or private sessions? Send a message and I’ll get back within 24 hours.</p>
-      <form id="contactForm" class="features" style="grid-template-columns: 1fr 1fr; gap: 14px;">
-        <input required name="name" placeholder="Your name" style="padding:12px 14px; border:1px solid #e5e7eb; border-radius:10px;" />
-        <input required name="email" type="email" placeholder="Email" style="padding:12px 14px; border:1px solid #e5e7eb; border-radius:10px;" />
-        <textarea required name="message" placeholder="Your message" rows="4" style="grid-column:1/-1; padding:12px 14px; border:1px solid #e5e7eb; border-radius:12px;"></textarea>
-        <button class="btn btn-primary" type="submit" style="grid-column:1/-1; width:max-content;">Send Message</button>
-        <p id="formNote" style="grid-column:1/-1; margin:0; font-size:.95rem; color:var(--ink-2);"></p>
-      </form>
-    </div>
-  </section>
-
-  <footer>
-    <div class="foot">
-      <div>
-        <div class="brand" style="margin-bottom:8px;">
-          <span class="brand-mark" aria-hidden="true"></span>
-          <span>Vital Yoga</span>
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="wrap">
+        <h2 class="section-title">About Hub City Yoga To-Go</h2>
+        <div class="grid cols-3">
+          <div class="card">
+            <span class="badge">Philosophy</span>
+            <p>Slow, breath-led practices inspired by nature’s cycles—think forest greens and warm earth tones, now reflected in our new palette.</p>
+          </div>
+          <div class="card">
+            <span class="badge">Who it’s for</span>
+            <p>Beginners, busy professionals, and anyone seeking grounding movement and mindful rest. Mat-friendly options for all bodies.</p>
+          </div>
+          <div class="card">
+            <span class="badge">Where we meet</span>
+            <p>Homes, offices, parks, and community spaces around Spartanburg. We bring the props—you bring yourself.</p>
+          </div>
         </div>
-        <div class="credit">© <span id="year"></span> Vital Yoga • All rights reserved</div>
       </div>
-      <div style="justify-self:end; display:flex; gap:10px; align-items:center;">
-        <a class="btn btn-ghost" href="#booking">Book a Class</a>
+    </section>
+
+    <!-- CLASSES -->
+    <section id="classes">
+      <div class="wrap">
+        <h2 class="section-title">Offerings</h2>
+        <div class="grid cols-3">
+          <div class="card">
+            <h3>Private Session</h3>
+            <ul class="list">
+              <li>60–75 minutes tailored to your goals</li>
+              <li>Breath, mobility, and gentle strength</li>
+              <li>Great for new or returning students</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Small Group</h3>
+            <ul class="list">
+              <li>Friends, family, or coworkers (up to 8)</li>
+              <li>Calming pace with options for all</li>
+              <li>Perfect for weekly routines</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Restorative / Chair</h3>
+            <ul class="list">
+              <li>Deep rest with props or chair support</li>
+              <li>Nervous system-friendly pacing</li>
+              <li>Ideal for recovery and relaxation</li>
+            </ul>
+          </div>
+        </div>
+        <div class="band" style="margin-top:1rem">
+          <strong>Note:</strong> Sliding-scale pricing available. Community classes announced monthly.
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="wrap">
+        <h2 class="section-title">Reach Out</h2>
+        <div class="grid">
+          <div class="card">
+            <form onsubmit="event.preventDefault(); alert('Thanks! We will be in touch shortly.');">
+              <div class="grid" style="grid-template-columns:1fr 1fr; gap:.75rem">
+                <input class="input" type="text" name="name" placeholder="Your name" required>
+                <input class="input" type="email" name="email" placeholder="Email address" required>
+              </div>
+              <div style="margin-top:.75rem">
+                <input class="input" type="text" name="subject" placeholder="Subject">
+              </div>
+              <div style="margin-top:.75rem">
+                <textarea class="input" name="message" placeholder="Tell us what you’re looking for…" rows="5"></textarea>
+              </div>
+              <div style="margin-top:.9rem">
+                <button class="btn primary" type="submit">Send message</button>
+                <a class="btn ghost" href="tel:+1-864-000-0000">Call us</a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer role="contentinfo">
+    <div class="wrap foot">
+      <div>
+        <strong>Hub City Yoga To-Go</strong><br>
+        Spartanburg, SC • Mobile yoga
+      </div>
+      <div>
+        <a href="#about">About</a> · <a href="#classes">Classes</a> · <a href="#contact">Contact</a>
+      </div>
+      <div>
+        <a href="mailto:hello@hubcityyogatogo.com">hello@hubcityyogatogo.com</a>
       </div>
     </div>
+    <div class="copyright">© <span id="y"></span> Hub City Yoga To-Go</div>
   </footer>
 
-  <script>
-    // Minimal JS: year + fake form handler (replace with your service)
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    const form = document.getElementById('contactForm');
-    const note = document.getElementById('formNote');
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const data = Object.fromEntries(new FormData(form));
-      await new Promise(r => setTimeout(r, 700));
-      note.textContent = `Thanks, ${data.name}! Your message is on its way.`;
-      form.reset();
-    });
-  </script>
+  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
 </body>
 </html>
-
-
