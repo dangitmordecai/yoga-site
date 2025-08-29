@@ -38,16 +38,20 @@
 
     * { box-sizing:border-box }
     html,body { height:100% }
-    body { position:relative; background:transparent; }
-
-    body::before{
-      content:"";
-      position:fixed;
-      inset:0;               /* top:0; right:0; bottom:0; left:0 */
-      z-index:-1;            /* sit behind everything */
-      background: linear-gradient(180deg, var(--forest) 0%, var(--blush) 100%);
+    body {
+      margin: 0;
+      color: var(--text-dark);
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.65;
+      background: var(--bg-gradient) fixed;
+      background-size: 100% 100%;
     }
 
+    h1, h2, h3, .brand span, nav a, .btn, .section-title {
+      font-family: 'Quicksand', sans-serif;
+      letter-spacing: 0.5px;
+    }
     /* let the footer show the same gradient instead of its own bg */
     footer { background: transparent; }
 
@@ -290,6 +294,7 @@
   </script>
 </body>
 </html>
+
 
 
 
